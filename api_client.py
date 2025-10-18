@@ -21,7 +21,7 @@ class CoachAPIClient:
     
     # ==================== USERS ====================
     
-    def get_or_create_user(self, telegram_id: str, name: str, email: Optional[str] = None) -> Dict:
+    def get_or_create_user(self, telegram_id: str, name: str) -> Dict:
         """Get existing user by Telegram ID or create new one.
         
         Use this when a user starts chatting with your Telegram bot.
@@ -29,7 +29,6 @@ class CoachAPIClient:
         Args:
             telegram_id: User's Telegram ID
             name: User's name
-            email: Optional email
             
         Returns:
             User data dictionary
@@ -50,8 +49,7 @@ class CoachAPIClient:
         # Create new user if doesn't exist
         user_data = {
             "telegram_id": telegram_id,
-            "name": name,
-            "email": email
+            "name": name
         }
         response = self.session.post(f"{self.base_url}/users/", json=user_data)
         response.raise_for_status()
@@ -411,8 +409,7 @@ if __name__ == "__main__":
     print("=== Example 1: New User ===")
     user = client.get_or_create_user(
         telegram_id="test_12345",
-        name="Test User",
-        email="test@example.com"
+        name="Test User"
     )
     print(f"User ID: {user['id']}")
     user_id = user['id']

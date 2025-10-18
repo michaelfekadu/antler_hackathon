@@ -45,11 +45,11 @@ View API docs: http://localhost:8000/docs
 ## 📊 Database Schema
 
 ### Core Tables
-- **users** - User profiles with Telegram ID and coaching preferences
-- **goals** - User goals with metadata (motivation, obstacles, resources)
+- **users** - Telegram ID, name, coaching preferences
+- **goals** - Title, description, category, status, priority, progress, metadata
 - **plans** - AI-generated personalized plans (JSONB format)
-- **milestones** - Trackable sub-goals with progress
-- **check_ins** - Coaching sessions with sentiment analysis
+- **milestones** - Trackable sub-goals with status and due dates
+- **check_ins** - Coaching sessions with sentiment and action items
 - **conversations** - Full message history for AI context
 
 ---
@@ -112,6 +112,7 @@ user = client.get_or_create_user(
     telegram_id="123456789",
     name="John Doe"
 )
+# Returns: {'id': 'uuid', 'telegram_id': '...', 'name': '...', ...}
 
 # 2. Save conversation
 client.save_message(user['id'], "user", "I want to learn Python")

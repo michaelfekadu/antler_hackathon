@@ -31,8 +31,7 @@ def test_api():
     print("\n2️⃣ Testing POST /users/ (Create User)...")
     user_data = {
         "telegram_id": f"test_{datetime.now().timestamp()}",
-        "name": "Test User",
-        "email": "test@example.com"
+        "name": "Test User"
     }
     response = requests.post(f"{BASE_URL}/users/", json=user_data)
     if response.status_code == 201:
@@ -51,7 +50,7 @@ def test_api():
     goal_data = {
         "user_id": user_id,
         "title": "Test Goal - Learn Python",
-        "description": "This is a test goal",
+        "description": "NBA Player",
         "category": "learning",
         "priority": "high",
         "goal_metadata": {
@@ -76,7 +75,7 @@ def test_api():
     message_data = {
         "user_id": user_id,
         "role": "user",
-        "content": "This is a test message from the API test",
+        "content": "MJ>LBJ",
         "message_metadata": {"test": True}
     }
     response = requests.post(f"{BASE_URL}/conversations/", json=message_data)
@@ -100,7 +99,7 @@ def test_api():
             "phases": [
                 {
                     "phase": 1,
-                    "title": "Getting Started",
+                    "title": "training non stop",
                     "duration": "2 weeks"
                 }
             ]

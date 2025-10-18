@@ -64,8 +64,6 @@ class MessageRole(str, Enum):
 class UserBase(BaseModel):
     telegram_id: str
     name: str
-    email: Optional[str] = None
-    timezone: str = "UTC"
     coaching_preferences: Optional[Dict[str, Any]] = None
 
 
@@ -75,15 +73,11 @@ class UserCreate(UserBase):
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None
-    email: Optional[str] = None
-    timezone: Optional[str] = None
     coaching_preferences: Optional[Dict[str, Any]] = None
-    onboarding_completed: Optional[bool] = None
 
 
 class UserResponse(UserBase):
     id: UUID
-    onboarding_completed: bool
     created_at: datetime
     updated_at: datetime
     
